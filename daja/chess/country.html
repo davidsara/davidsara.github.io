@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Country Codes</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  </head>
+  <body>
+    <div id="map" style="height: 950px; width: 100%"></div>
+
+    <script>
+      const map = L.map("map").setView([20, 0], 2.5); // Set initial view
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      const countryCoordinates = {
+        AZE: [40.409264, 49.867092],
+        CZE: [50.0755, 14.4378],
+        ENG: [51.5074, -0.1278],
+        ESP: [40.4168, -3.7038],
+        GER: [52.52, 13.405],
+        IND: [28.6139, 77.209],
+        ISR: [31.7683, 35.2137],
+        KOR: [37.5665, 126.978],
+        LAT: [56.949, 24.1052],
+        NED: [52.3702, 4.8952],
+        POL: [52.2297, 21.0122],
+        RSA: [-25.7463, 28.1876],
+        RUS: [55.7558, 37.6173],
+        SVK: [48.1486, 17.1077],
+        TUR: [39.9334, 32.8597],
+        UAE: [24.4667, 54.3667],
+        UKR: [50.4501, 30.5234],
+      };
+
+      for (const code in countryCoordinates) {
+        if (countryCoordinates.hasOwnProperty(code)) {
+          const coords = countryCoordinates[code];
+          L.marker(coords).addTo(map).bindPopup(code); // Add marker with code as popup
+        }
+      }
+    </script>
+  </body>
+</html>
